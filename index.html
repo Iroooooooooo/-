@@ -23,7 +23,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f5f4f0; color: #1a1917; 
 #app-name { font-size: 14px; font-weight: 500; margin-bottom: 12px; }
 #new-chat-btn { width: 100%; padding: 10px; background: #1a1917; color: #fff; border: none; border-radius: 10px; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; display: block; }
 #chat-list { flex: 1; overflow-y: auto; padding: 8px; }
-.chat-item { padding: 10px 12px; border-radius: 8px; font-size: 13px; color: #8a8780; cursor: pointer; margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chat-item { padding: 10px 12px; border-radius: 8px; font-size: 13px; color: #8a8780; cursor: pointer; margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; text-align: left; background: none; border: none; font-family: inherit; display: block; }
 .chat-item.active { background: #e8e6e0; color: #1a1917; font-weight: 500; }
 #sidebar-footer { padding: 12px; border-top: 1px solid #e8e6e0; }
 #settings-btn { width: 100%; padding: 10px 12px; background: none; border: none; font-family: inherit; font-size: 13px; color: #8a8780; cursor: pointer; text-align: left; border-radius: 8px; display: block; }
@@ -125,7 +125,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f5f4f0; color: #1a1917; 
           </div>
         </div>
         <div id="input-meta">
-          <div id="auto-wrap"><div id="auto-sw"></div>Claude 主动发消息</div>
+          <button id="auto-wrap" style="background:none;border:none;font-family:inherit;display:flex;align-items:center;gap:7px;font-size:12px;color:#8a8780;cursor:pointer;padding:4px 0;"><div id="auto-sw"></div>Claude 主动发消息</button>
           <span style="font-size:11px;color:#b8b5ae;font-family:'DM Mono',monospace">⌘↵ 发送</span>
         </div>
       </div>
@@ -198,10 +198,10 @@ var el = document.getElementById(‘chat-list’);
 if (!chats.length) { el.innerHTML = ‘<div style="padding:12px;font-size:12px;color:#b8b5ae;text-align:center">暂无对话</div>’; return; }
 var html = ‘’;
 for (var i=0;i<chats.length;i++) {
-html += ‘<div class="chat-item'+(chats[i].id===curId?' active':'')+'" data-cid="'+chats[i].id+'">’+esc(chats[i].title)+’</div>’;
+html += ‘<button class="chat-item'+(chats[i].id===curId?' active':'')+'" data-cid="'+chats[i].id+'">’+esc(chats[i].title)+’</button>’;
 }
 el.innerHTML = html;
-var items = el.querySelectorAll(’.chat-item’);
+var items = el.querySelectorAll(‘button.chat-item’);
 for (var j=0;j<items.length;j++) {
 (function(item){ item.addEventListener(‘click’,function(){ loadChat(this.getAttribute(‘data-cid’)); }); })(items[j]);
 }
