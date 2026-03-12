@@ -1296,6 +1296,15 @@ sendMessage();
 
 // ── Buttons ──
 document.getElementById(‘new-chat-btn’).addEventListener(‘click’, createChat);
+document.getElementById(‘send-btn’).addEventListener(‘click’, () => sendMessage());
+document.getElementById(‘search-toggle’).addEventListener(‘click’, toggleSearch);
+
+// iPad Safari fix: convert all onclick to addEventListener
+document.querySelectorAll(’[onclick]’).forEach(el => {
+const fn = el.getAttribute(‘onclick’);
+el.removeAttribute(‘onclick’);
+el.addEventListener(‘click’, (e) => { e.stopPropagation(); eval(fn); });
+});
 
 // ── Start ──
 setStatus(‘online’, ‘就绪’);
