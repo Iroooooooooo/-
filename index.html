@@ -92,6 +92,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f5f4f0; color: #1a1917; 
     <div id="status-pill"><span id="status-dot"></span>&nbsp;<span id="status-text">就绪</span></div>
   </div>
   <button id="gear-btn" style="background:none;border:none;font-size:20px;padding:10px;color:#8a8780;cursor:pointer;">⚙</button>
+  <button id="debug-btn" style="background:#e05a4a;border:none;color:white;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;">测试点击</button>
 </div>
 
 <div id="body-wrap">
@@ -363,6 +364,11 @@ ta.addEventListener(‘input’,function(){this.style.height=‘auto’;this.sty
 ta.addEventListener(‘keydown’,function(e){if((e.metaKey||e.ctrlKey)&&e.key===‘Enter’){e.preventDefault();document.getElementById(‘send-btn’).click();}});
 
 if(chats.length) loadChat(chats[0].id); else renderList();
+
+// Debug
+document.getElementById(‘debug-btn’).addEventListener(‘click’, function(){
+alert(’JS正常！点击事件有效。localStorage: ’ + (typeof localStorage !== ‘undefined’ ? ‘正常’ : ‘不可用’));
+});
 </script>
 
 </body>
